@@ -12,4 +12,22 @@ public class Product {
 
     private BigDecimal price;
 
+
+    public Product(String name, String barcode, BigDecimal price) {
+        this.name = name;
+        this.barcode = barcode;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
 }

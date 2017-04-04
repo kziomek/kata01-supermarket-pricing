@@ -10,5 +10,18 @@ public class Saving {
 
     private BigDecimal value;
 
+
+    public Saving(String name, BigDecimal value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
 }
 

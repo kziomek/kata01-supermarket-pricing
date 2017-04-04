@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -6,6 +7,19 @@ import java.util.List;
  */
 public class Basket {
 
-    List<Item> items;
+    private List<Item> items;
+
+
+    public Basket() {
+        items = new ArrayList<>();
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
 
 }

@@ -8,7 +8,7 @@ import org.junit.Test;
 public class PricingServiceTest {
 
     @Test
-    public void calculateShouldReturnBasketWithCalculatedSubTotalValue() throws Exception {
+    public void calculateShouldReturnReceiptWithCalculatedSubTotalValue() throws Exception {
         // prepare
         PricingService pricingService = new PricingService();
 
