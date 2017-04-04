@@ -29,4 +29,7 @@ public class PricingService {
         return subTotal;
     }
 
+    protected BigDecimal calculateTotalSavings(Basket basket) {
+        return null;
+    }
 }

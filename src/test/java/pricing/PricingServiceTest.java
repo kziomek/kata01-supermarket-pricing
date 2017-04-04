@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  */
 public class PricingServiceTest {
 
-    @Test
+    @Test //Todo upgrade test to full Basket
     public void calculateShouldReturnReceiptWithCalculatedSubTotalValue() throws Exception {
         // prepare
         PricingService pricingService = new PricingService();
@@ -40,6 +40,19 @@ public class PricingServiceTest {
 
         // assert
         Assert.assertEquals(new BigDecimal("3.30"), subTotal);
+    }
+
+    @Test
+    public void calculateTotalSavingsShouldReturnSummedValueOfSavings() {
+        // prepare
+        PricingService pricingService = new PricingService();
+        Basket basket = BasketFactory.getFullBasket();
+
+        // execute
+        BigDecimal subTotal = pricingService.calculateTotalSavings(basket);
+
+        // assert
+        Assert.assertEquals(new BigDecimal("0.90"), subTotal);
     }
 
 }
