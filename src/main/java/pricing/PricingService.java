@@ -1,3 +1,8 @@
+package pricing;
+
+import basket.Basket;
+import basket.Item;
+
 import java.math.BigDecimal;
 
 /**
@@ -15,11 +20,12 @@ public class PricingService {
 
     }
 
-    private BigDecimal calculateSubTotal(Basket basket) {
+    protected BigDecimal calculateSubTotal(Basket basket) {
         BigDecimal subTotal = BigDecimal.ZERO;
         for (Item item : basket.getItems()) {
             subTotal = subTotal.add(item.getQuantity().multiply(item.getProduct().getPrice()));
         }
+        subTotal = subTotal.setScale(2, BigDecimal.ROUND_HALF_DOWN);
         return subTotal;
     }
 

@@ -1,3 +1,7 @@
+package basket;
+
+import product.Product;
+
 import java.math.BigDecimal;
 
 /**

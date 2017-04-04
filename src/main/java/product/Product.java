@@ -1,30 +1,28 @@
+package product;
+
 import java.math.BigDecimal;
 
 /**
  * @author Krzysztof Ziomek
  * @since 04/04/2017.
  */
-public class Product {
+public abstract class Product {
 
-    private String name;
+    protected String name;
 
-    private String barcode;
+    protected BigDecimal price;
 
-    private BigDecimal price;
 
+    public Product() {
+    }
 
     public Product(String name, String barcode, BigDecimal price) {
         this.name = name;
-        this.barcode = barcode;
         this.price = price;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getBarcode() {
-        return barcode;
     }
 
     public BigDecimal getPrice() {

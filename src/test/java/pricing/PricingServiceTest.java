@@ -1,5 +1,11 @@
+package pricing;
+
+import basket.Basket;
+import basket.BasketFactory;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.math.BigDecimal;
 
 /**
  * @author Krzysztof Ziomek
@@ -20,6 +26,20 @@ public class PricingServiceTest {
         // assert
         Assert.assertNotNull(result.getSubTotal());
 
+    }
+
+
+    @Test
+    public void calculateSubTotalShouldReturnSummedPriceOfItemsForGivenBasket() {
+        // prepare
+        PricingService pricingService = new PricingService();
+        Basket basket = BasketFactory.getFullBasket();
+
+        // execute
+        BigDecimal subTotal = pricingService.calculateSubTotal(basket);
+
+        // assert
+        Assert.assertEquals(new BigDecimal("3.30"), subTotal);
     }
 
 }
