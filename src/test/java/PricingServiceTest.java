@@ -15,7 +15,7 @@ public class PricingServiceTest {
         Basket basket = new Basket();
 
         // execute
-        Basket result = pricingService.calculate(basket);
+        Receipt result = pricingService.calculate(basket);
 
         // assert
         Assert.assertNotNull(result.getSubTotal());

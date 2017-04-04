@@ -1,4 +1,4 @@
-import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Krzysztof Ziomek
@@ -6,13 +6,6 @@ import java.math.BigDecimal;
  */
 public class Basket {
 
-    private BigDecimal subTotal;
+    List<Item> items;
 
-    public BigDecimal getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(BigDecimal subTotal) {
-        this.subTotal = subTotal;
-    }
 }

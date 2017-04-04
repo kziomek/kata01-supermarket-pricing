@@ -4,7 +4,7 @@
  */
 public class PricingService {
 
-    public Basket calculate(Basket basket) {
+    public Receipt calculate(Basket basket) {
         return null;
     }
 
