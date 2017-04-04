@@ -19,7 +19,7 @@ public class DiscountServiceTest {
     @Test
     public void calculateDiscountShouldReturn50PencesOn3BeansItem() throws Exception {
         // prepare
-        DiscountService discountService = new DiscountService();
+        DiscountService discountService = new DiscountService(new InMemoryDiscountRepository());
         Item beansItem = new Item(ProductFactory.getProduct(BEANS), new BigDecimal(3));
 
         // execute
@@ -33,7 +33,7 @@ public class DiscountServiceTest {
     @Test
     public void calculateDiscountShouldReturn40PencesOn2CokesItem() throws Exception {
         // prepare
-        DiscountService discountService = new DiscountService();
+        DiscountService discountService = new DiscountService(new InMemoryDiscountRepository());
         Item beansItem = new Item(ProductFactory.getProduct(COKE), new BigDecimal(2));
 
         // execute

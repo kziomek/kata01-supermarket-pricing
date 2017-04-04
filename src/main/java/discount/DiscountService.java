@@ -3,6 +3,7 @@ package discount;
 import basket.Item;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Krzysztof Ziomek
@@ -10,8 +11,21 @@ import java.math.BigDecimal;
  */
 public class DiscountService {
 
+    private DiscountRepository discountRepository;
+
+    public DiscountService(DiscountRepository discountRepository) {
+        this.discountRepository = discountRepository;
+    }
+
     public BigDecimal calculateDiscount(Item item) {
-        return null;
+
+        BigDecimal discountSum = BigDecimal.ZERO;
+
+        List<Discount> allDiscounts = discountRepository.findAllDiscounts();
+        for (Discount discount : allDiscounts) {
+            discountSum = discountSum.add(discount.calculateDiscount(item));
+        }
+        return discountSum;
     }
 
 }
