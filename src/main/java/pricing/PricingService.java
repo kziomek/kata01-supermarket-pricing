@@ -2,6 +2,7 @@ package pricing;
 
 import basket.Basket;
 import basket.Item;
+import discount.DiscountService;
 
 import java.math.BigDecimal;
 
@@ -11,6 +12,11 @@ import java.math.BigDecimal;
  */
 public class PricingService {
 
+    private DiscountService discountService;
+
+    public PricingService(DiscountService discountService) {
+        this.discountService = discountService;
+    }
 
     public Receipt calculate(Basket basket) {
 
@@ -31,10 +37,10 @@ public class PricingService {
     }
 
     protected BigDecimal calculateTotalSavings(Basket basket) {
-//        BigDecimal totalSavings = BigDecimal.ZERO;
-//        for (Item item : basket.getItems()) {
-//
-//        }
-        return  null;
+        BigDecimal totalSavings = BigDecimal.ZERO;
+        for (Item item : basket.getItems()) {
+            totalSavings = totalSavings.add(discountService.calculateDiscount(item));
+        }
+        return totalSavings;
     }
 }

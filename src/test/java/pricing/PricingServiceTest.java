@@ -2,6 +2,8 @@ package pricing;
 
 import basket.Basket;
 import basket.BasketFactory;
+import discount.DiscountService;
+import discount.InMemoryDiscountRepository;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +18,7 @@ public class PricingServiceTest {
     @Test //Todo upgrade test to full Basket
     public void calculateShouldReturnReceiptWithCalculatedSubTotalValue() throws Exception {
         // prepare
-        PricingService pricingService = new PricingService();
+        PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
 
         Basket basket = new Basket();
 
@@ -32,7 +34,7 @@ public class PricingServiceTest {
     @Test
     public void calculateSubTotalShouldReturnSummedPriceOfItemsForGivenBasket() {
         // prepare
-        PricingService pricingService = new PricingService();
+        PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
         Basket basket = BasketFactory.getFullBasket();
 
         // execute
@@ -45,7 +47,7 @@ public class PricingServiceTest {
     @Test
     public void calculateTotalSavingsShouldReturnSummedValueOfSavings() {
         // prepare
-        PricingService pricingService = new PricingService();
+        PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
         Basket basket = BasketFactory.getFullBasket();
 
         // execute
