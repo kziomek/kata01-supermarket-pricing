@@ -9,6 +9,11 @@ import java.math.BigDecimal;
 public class Coke2For1PoundDiscount extends BunchDiscount {
 
     @Override
+    protected String getDiscountDescription() {
+        return "Coke 2 for £1";
+    }
+
+    @Override
     protected String getProductNameForDiscount() {
         return "Coke";
     }

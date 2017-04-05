@@ -5,6 +5,8 @@ import basket.Item;
 import discount.DiscountService;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Krzysztof Ziomek
@@ -36,10 +38,18 @@ public class PricingService {
         return subTotal;
     }
 
-    protected BigDecimal calculateTotalSavings(Basket basket) {
-        BigDecimal totalSavings = BigDecimal.ZERO;
+    protected List<Saving> calculateAllSavings(Basket basket) {
+        List<Saving> allSavings = new ArrayList<>();
         for (Item item : basket.getItems()) {
-            totalSavings = totalSavings.add(discountService.calculateDiscount(item));
+            allSavings.addAll(discountService.calculateDiscount(item));
+        }
+        return allSavings;
+    }
+
+    protected BigDecimal calculateTotalSavings(List<Saving> savings) {
+        BigDecimal totalSavings = BigDecimal.ZERO;
+        for (Saving saving : savings) {
+            totalSavings = totalSavings.add(saving.getValue());
         }
         return totalSavings;
     }

@@ -8,6 +8,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Krzysztof Ziomek
@@ -32,7 +34,7 @@ public class PricingServiceTest {
 
 
     @Test
-    public void calculateSubTotalShouldReturnSummedPriceOfItemsForGivenBasket() {
+    public void calculateSubTotalShouldReturnValidSubTotalForGivenBasket() {
         // prepare
         PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
         Basket basket = BasketFactory.getFullBasket();
@@ -45,16 +47,38 @@ public class PricingServiceTest {
     }
 
     @Test
-    public void calculateTotalSavingsShouldReturnSummedValueOfSavings() {
+    public void calculateTotalSavingsShouldReturnValidTotalSavingsForGivenListOfSavings() {
+        // prepare
+        PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
+
+        List<Saving> savings = new ArrayList<>();
+        savings.add(new Saving("Beans 3 for 2", new BigDecimal("0.50")));
+        savings.add(new Saving("Coke 2 for £1", new BigDecimal("0.40")));
+
+        // execute
+        BigDecimal subTotal = pricingService.calculateTotalSavings(savings);
+
+        // assert
+        Assert.assertEquals(new BigDecimal("0.90"), subTotal);
+    }
+
+    @Test
+    public void calculateAllSavingsShouldReturnListOfTwoSavingsForGivenBasket() {
         // prepare
         PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
         Basket basket = BasketFactory.getFullBasket();
 
         // execute
-        BigDecimal subTotal = pricingService.calculateTotalSavings(basket);
+        List<Saving> savings = pricingService.calculateAllSavings(basket);
 
         // assert
-        Assert.assertEquals(new BigDecimal("0.90"), subTotal);
+        Assert.assertEquals(2, savings.size());
+        Assert.assertEquals("Beans 3 for 2", savings.get(0).getName());
+        Assert.assertEquals(new BigDecimal("0.50"), savings.get(0).getValue());
+        Assert.assertEquals("Coke 2 for £1", savings.get(1).getName());
+        Assert.assertEquals(new BigDecimal("0.40"), savings.get(1).getValue());
+
     }
+
 
 }

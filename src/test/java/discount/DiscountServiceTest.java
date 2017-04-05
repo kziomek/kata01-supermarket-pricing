@@ -3,9 +3,11 @@ package discount;
 import basket.Item;
 import org.junit.Assert;
 import org.junit.Test;
+import pricing.Saving;
 import product.ProductFactory;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static product.ProductEnum.BEANS;
 import static product.ProductEnum.COKE;
@@ -23,10 +25,10 @@ public class DiscountServiceTest {
         Item beansItem = new Item(ProductFactory.getProduct(BEANS), new BigDecimal(3));
 
         // execute
-        BigDecimal result = discountService.calculateDiscount(beansItem);
+        List<Saving> savings = discountService.calculateDiscount(beansItem);
 
         // assert
-        Assert.assertEquals(new BigDecimal("0.50"), result);
+        Assert.assertEquals(new BigDecimal("0.50"), savings.get(0).getValue());
 
     }
 
@@ -37,10 +39,10 @@ public class DiscountServiceTest {
         Item beansItem = new Item(ProductFactory.getProduct(COKE), new BigDecimal(2));
 
         // execute
-        BigDecimal result = discountService.calculateDiscount(beansItem);
+        List<Saving> savings = discountService.calculateDiscount(beansItem);
 
         // assert
-        Assert.assertEquals(new BigDecimal("0.40"), result);
+        Assert.assertEquals(new BigDecimal("0.40"), savings.get(0).getValue());
 
     }
 

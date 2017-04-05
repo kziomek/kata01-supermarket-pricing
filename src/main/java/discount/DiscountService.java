@@ -1,8 +1,9 @@
 package discount;
 
 import basket.Item;
+import pricing.Saving;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,15 +18,17 @@ public class DiscountService {
         this.discountRepository = discountRepository;
     }
 
-    public BigDecimal calculateDiscount(Item item) {
-
-        BigDecimal discountSum = BigDecimal.ZERO;
-
+    public List<Saving> calculateDiscount(Item item) {
+        List<Saving> savings = new ArrayList<>();
         List<Discount> allDiscounts = discountRepository.findAllDiscounts();
+
         for (Discount discount : allDiscounts) {
-            discountSum = discountSum.add(discount.calculateDiscount(item));
+            Saving saving = discount.calculateDiscount(item);
+            if (saving != null) {
+                savings.add(saving);
+            }
         }
-        return discountSum;
+        return savings;
     }
 
 }

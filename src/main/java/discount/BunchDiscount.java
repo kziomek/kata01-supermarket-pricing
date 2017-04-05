@@ -1,6 +1,7 @@
 package discount;
 
 import basket.Item;
+import pricing.Saving;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -9,20 +10,23 @@ import java.math.RoundingMode;
  * @author Krzysztof Ziomek
  * @since 04/04/2017.
  */
-public abstract class BunchDiscount extends BaseDiscount {
+public abstract class BunchDiscount implements Discount {
 
     @Override
-    public BigDecimal calculateDiscount(Item item) {
-        BigDecimal discountValue;
+    public Saving calculateDiscount(Item item) {
 
         if (!getProductNameForDiscount().equals(item.getProduct().getName())) {
-            discountValue = BigDecimal.ZERO;
-        } else {
-            BigDecimal numberOfDiscounts = item.getQuantity().divide(getNumberOfItemsRequiredForSingleDiscount(), 0, RoundingMode.DOWN);
-            discountValue = getSingleDiscountValue().multiply(numberOfDiscounts);
+            return null;
         }
-        return discountValue;
+
+        BigDecimal numberOfDiscounts = item.getQuantity().divide(getNumberOfItemsRequiredForSingleDiscount(), 0, RoundingMode.DOWN);
+        BigDecimal discountValue = getSingleDiscountValue().multiply(numberOfDiscounts);
+
+        return new Saving(getDiscountDescription(), discountValue);
+
     }
+
+    protected abstract String getDiscountDescription();
 
     protected abstract String getProductNameForDiscount();
 

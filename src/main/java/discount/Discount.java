@@ -1,8 +1,7 @@
 package discount;
 
 import basket.Item;
-
-import java.math.BigDecimal;
+import pricing.Saving;
 
 /**
  * @author Krzysztof Ziomek
@@ -10,6 +9,6 @@ import java.math.BigDecimal;
  */
 public interface Discount {
 
-    public BigDecimal calculateDiscount(Item item);
+    Saving calculateDiscount(Item item);
 
 }
