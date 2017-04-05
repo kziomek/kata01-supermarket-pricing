@@ -2,8 +2,8 @@ package pricing;
 
 import basket.Basket;
 import basket.Item;
-import discount.DiscountService;
 import discount.Discount;
+import discount.DiscountService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class PricingService {
     protected List<Discount> calculateAllSavings(Basket basket) {
         List<Discount> allDiscounts = new ArrayList<>();
         for (Item item : basket.getItems()) {
-            allDiscounts.addAll(discountService.calculateDiscount(item));
+            allDiscounts.addAll(discountService.collectDiscounts(item));
         }
         return allDiscounts;
     }

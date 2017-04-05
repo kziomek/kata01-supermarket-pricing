@@ -18,7 +18,7 @@ public class DiscountService {
         this.discountRepository = discountRepository;
     }
 
-    public List<Discount> calculateDiscount(Item item) {
+    public List<Discount> collectDiscounts(Item item) {
         List<Discount> discounts = new ArrayList<>();
         List<DiscountRule> allDiscountStrategies = discountRepository.findAllDiscounts();
 

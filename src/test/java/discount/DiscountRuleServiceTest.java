@@ -18,13 +18,13 @@ import static product.ProductEnum.COKE;
 public class DiscountRuleServiceTest {
 
     @Test
-    public void calculateDiscountShouldReturn50pOn3BeansItem() throws Exception {
+    public void collectDiscountsShouldReturn50pOn3BeansItem() throws Exception {
         // prepare
         DiscountService discountService = new DiscountService(new InMemoryDiscountRepository());
         Item beansItem = new Item(ProductFactory.getProduct(BEANS), new BigDecimal(3));
 
         // execute
-        List<Discount> discounts = discountService.calculateDiscount(beansItem);
+        List<Discount> discounts = discountService.collectDiscounts(beansItem);
 
         // assert
         Assert.assertEquals(new BigDecimal("0.50"), discounts.get(0).getValue());
@@ -32,13 +32,13 @@ public class DiscountRuleServiceTest {
     }
 
     @Test
-    public void calculateDiscountShouldReturn40pOn2CokesItem() throws Exception {
+    public void collectDiscountsShouldReturn40pOn2CokesItem() throws Exception {
         // prepare
         DiscountService discountService = new DiscountService(new InMemoryDiscountRepository());
         Item beansItem = new Item(ProductFactory.getProduct(COKE), new BigDecimal(2));
 
         // execute
-        List<Discount> discounts = discountService.calculateDiscount(beansItem);
+        List<Discount> discounts = discountService.collectDiscounts(beansItem);
 
         // assert
         Assert.assertEquals(new BigDecimal("0.40"), discounts.get(0).getValue());
