@@ -1,7 +1,7 @@
 package discount.rule;
 
 import basket.Item;
-import discount.Saving;
+import discount.Discount;
 
 /**
  * @author Krzysztof Ziomek
@@ -9,6 +9,6 @@ import discount.Saving;
  */
 public interface DiscountRule {
 
-    Saving calculateDiscount(Item item);
+    Discount calculateDiscount(Item item);
 
 }

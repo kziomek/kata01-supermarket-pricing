@@ -24,10 +24,10 @@ public class DiscountRuleServiceTest {
         Item beansItem = new Item(ProductFactory.getProduct(BEANS), new BigDecimal(3));
 
         // execute
-        List<Saving> savings = discountService.calculateDiscount(beansItem);
+        List<Discount> discounts = discountService.calculateDiscount(beansItem);
 
         // assert
-        Assert.assertEquals(new BigDecimal("0.50"), savings.get(0).getValue());
+        Assert.assertEquals(new BigDecimal("0.50"), discounts.get(0).getValue());
 
     }
 
@@ -38,10 +38,10 @@ public class DiscountRuleServiceTest {
         Item beansItem = new Item(ProductFactory.getProduct(COKE), new BigDecimal(2));
 
         // execute
-        List<Saving> savings = discountService.calculateDiscount(beansItem);
+        List<Discount> discounts = discountService.calculateDiscount(beansItem);
 
         // assert
-        Assert.assertEquals(new BigDecimal("0.40"), savings.get(0).getValue());
+        Assert.assertEquals(new BigDecimal("0.40"), discounts.get(0).getValue());
 
     }
 

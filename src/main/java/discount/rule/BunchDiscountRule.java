@@ -1,7 +1,7 @@
 package discount.rule;
 
 import basket.Item;
-import discount.Saving;
+import discount.Discount;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -13,7 +13,7 @@ import java.math.RoundingMode;
 public abstract class BunchDiscountRule implements DiscountRule {
 
     @Override
-    public Saving calculateDiscount(Item item) {
+    public Discount calculateDiscount(Item item) {
 
         if (!isApplicable(item)) {
             return null;
@@ -22,7 +22,7 @@ public abstract class BunchDiscountRule implements DiscountRule {
         BigDecimal numberOfDiscounts = item.getQuantity().divide(getNumberOfItemsRequiredForSingleDiscount(), 0, RoundingMode.DOWN);
         BigDecimal discountValue = getSingleDiscountValue().multiply(numberOfDiscounts);
 
-        return new Saving(getDiscountDescription(), discountValue);
+        return new Discount(getDiscountDescription(), discountValue);
 
     }
 

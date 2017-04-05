@@ -3,7 +3,7 @@ package pricing;
 import basket.Basket;
 import basket.Item;
 import discount.DiscountService;
-import discount.Saving;
+import discount.Discount;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -24,11 +24,11 @@ public class PricingService {
     public Pricing calculate(Basket basket) {
 
         BigDecimal subTotal = calculateSubTotal(basket);
-        List<Saving> savings = calculateAllSavings(basket);
-        BigDecimal totalSavings = calculateTotalSavings(savings);
+        List<Discount> discounts = calculateAllSavings(basket);
+        BigDecimal totalSavings = calculateTotalSavings(discounts);
         BigDecimal totalToPay = calculateTotalToPay(subTotal, totalSavings);
 
-        return new Pricing(basket, subTotal, totalSavings, totalToPay, savings);
+        return new Pricing(basket, subTotal, totalSavings, totalToPay, discounts);
 
     }
 
@@ -41,18 +41,18 @@ public class PricingService {
         return subTotal;
     }
 
-    protected List<Saving> calculateAllSavings(Basket basket) {
-        List<Saving> allSavings = new ArrayList<>();
+    protected List<Discount> calculateAllSavings(Basket basket) {
+        List<Discount> allDiscounts = new ArrayList<>();
         for (Item item : basket.getItems()) {
-            allSavings.addAll(discountService.calculateDiscount(item));
+            allDiscounts.addAll(discountService.calculateDiscount(item));
         }
-        return allSavings;
+        return allDiscounts;
     }
 
-    protected BigDecimal calculateTotalSavings(List<Saving> savings) {
+    protected BigDecimal calculateTotalSavings(List<Discount> discounts) {
         BigDecimal totalSavings = BigDecimal.ZERO;
-        for (Saving saving : savings) {
-            totalSavings = totalSavings.add(saving.getValue());
+        for (Discount discount : discounts) {
+            totalSavings = totalSavings.add(discount.getValue());
         }
         return totalSavings;
     }

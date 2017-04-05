@@ -4,7 +4,7 @@ import basket.Basket;
 import basket.BasketFactory;
 import discount.DiscountService;
 import discount.InMemoryDiscountRepository;
-import discount.Saving;
+import discount.Discount;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -56,12 +56,12 @@ public class PricingServiceTest {
         // prepare
         PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
 
-        List<Saving> savings = new ArrayList<>();
-        savings.add(new Saving("Beans 3 for 2", new BigDecimal("0.50")));
-        savings.add(new Saving("Coke 2 for £1", new BigDecimal("0.40")));
+        List<Discount> discounts = new ArrayList<>();
+        discounts.add(new Discount("Beans 3 for 2", new BigDecimal("0.50")));
+        discounts.add(new Discount("Coke 2 for £1", new BigDecimal("0.40")));
 
         // execute
-        BigDecimal subTotal = pricingService.calculateTotalSavings(savings);
+        BigDecimal subTotal = pricingService.calculateTotalSavings(discounts);
 
         // assert
         assertEquals(new BigDecimal("0.90"), subTotal);
@@ -74,14 +74,14 @@ public class PricingServiceTest {
         Basket basket = BasketFactory.getFullBasket();
 
         // execute
-        List<Saving> savings = pricingService.calculateAllSavings(basket);
+        List<Discount> discounts = pricingService.calculateAllSavings(basket);
 
         // assert
-        assertEquals(2, savings.size());
-        assertEquals("Beans 3 for 2", savings.get(0).getName());
-        assertEquals(new BigDecimal("0.50"), savings.get(0).getValue());
-        assertEquals("Coke 2 for £1", savings.get(1).getName());
-        assertEquals(new BigDecimal("0.40"), savings.get(1).getValue());
+        assertEquals(2, discounts.size());
+        assertEquals("Beans 3 for 2", discounts.get(0).getName());
+        assertEquals(new BigDecimal("0.50"), discounts.get(0).getValue());
+        assertEquals("Coke 2 for £1", discounts.get(1).getName());
+        assertEquals(new BigDecimal("0.40"), discounts.get(1).getValue());
 
     }
 

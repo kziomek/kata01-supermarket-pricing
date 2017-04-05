@@ -18,17 +18,17 @@ public class DiscountService {
         this.discountRepository = discountRepository;
     }
 
-    public List<Saving> calculateDiscount(Item item) {
-        List<Saving> savings = new ArrayList<>();
+    public List<Discount> calculateDiscount(Item item) {
+        List<Discount> discounts = new ArrayList<>();
         List<DiscountRule> allDiscountStrategies = discountRepository.findAllDiscounts();
 
         for (DiscountRule discountRule : allDiscountStrategies) {
-            Saving saving = discountRule.calculateDiscount(item);
-            if (saving != null) {
-                savings.add(saving);
+            Discount discount = discountRule.calculateDiscount(item);
+            if (discount != null) {
+                discounts.add(discount);
             }
         }
-        return savings;
+        return discounts;
     }
 
 }

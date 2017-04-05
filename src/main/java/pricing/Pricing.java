@@ -1,7 +1,7 @@
 package pricing;
 
 import basket.Basket;
-import discount.Saving;
+import discount.Discount;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,15 +20,15 @@ public class Pricing {
 
     private final BigDecimal totalToPay;
 
-    private final List<Saving> savings;
+    private final List<Discount> discounts;
 
 
-    public Pricing(Basket basket, BigDecimal subTotal, BigDecimal totalSavings, BigDecimal totalToPay, List<Saving> savings) {
+    public Pricing(Basket basket, BigDecimal subTotal, BigDecimal totalSavings, BigDecimal totalToPay, List<Discount> discounts) {
         this.basket = basket;
         this.subTotal = subTotal;
         this.totalSavings = totalSavings;
         this.totalToPay = totalToPay;
-        this.savings = savings;
+        this.discounts = discounts;
     }
 
     public BigDecimal getSubTotal() {
@@ -43,8 +43,8 @@ public class Pricing {
         return totalToPay;
     }
 
-    public List<Saving> getSavings() {
-        return savings;
+    public List<Discount> getSavings() {
+        return discounts;
     }
 
     public Basket getBasket() {
