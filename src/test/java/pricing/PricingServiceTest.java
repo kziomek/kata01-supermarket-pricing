@@ -2,9 +2,9 @@ package pricing;
 
 import basket.Basket;
 import basket.BasketFactory;
+import discount.Discount;
 import discount.DiscountService;
 import discount.InMemoryDiscountRepository;
-import discount.Discount;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 public class PricingServiceTest {
 
     @Test
-    public void calculateShouldReturnReceiptWithValidValuesForGivenBasket() throws Exception {
+    public void calculateShouldReturnPricingWithValidValuesForGivenBasket() throws Exception {
         // prepare
         PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
         Basket basket = BasketFactory.getFullBasket();
