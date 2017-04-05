@@ -16,11 +16,6 @@ public abstract class Product {
     public Product() {
     }
 
-    public Product(String name, String barcode, BigDecimal price) {
-        this.name = name;
-        this.price = price;
-    }
-
     public String getName() {
         return name;
     }

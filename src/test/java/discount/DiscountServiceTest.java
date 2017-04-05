@@ -19,7 +19,7 @@ import static product.ProductEnum.COKE;
 public class DiscountServiceTest {
 
     @Test
-    public void calculateDiscountShouldReturn50PencesOn3BeansItem() throws Exception {
+    public void calculateDiscountShouldReturn50pOn3BeansItem() throws Exception {
         // prepare
         DiscountService discountService = new DiscountService(new InMemoryDiscountRepository());
         Item beansItem = new Item(ProductFactory.getProduct(BEANS), new BigDecimal(3));
@@ -33,7 +33,7 @@ public class DiscountServiceTest {
     }
 
     @Test
-    public void calculateDiscountShouldReturn40PencesOn2CokesItem() throws Exception {
+    public void calculateDiscountShouldReturn40pOn2CokesItem() throws Exception {
         // prepare
         DiscountService discountService = new DiscountService(new InMemoryDiscountRepository());
         Item beansItem = new Item(ProductFactory.getProduct(COKE), new BigDecimal(2));

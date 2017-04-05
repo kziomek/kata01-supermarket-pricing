@@ -8,9 +8,9 @@ import java.math.BigDecimal;
  */
 public class Saving {
 
-    private String name;
+    private final String name;
 
-    private BigDecimal value;
+    private final BigDecimal value;
 
 
     public Saving(String name, BigDecimal value) {

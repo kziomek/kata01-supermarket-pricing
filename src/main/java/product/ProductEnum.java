@@ -6,8 +6,19 @@ package product;
  */
 public enum ProductEnum {
 
-    BEANS,
-    COKE,
-    ORANGES;
+    BEANS("Beans"),
+    COKE("Coke"),
+    ORANGES("Oranges");
+
+    private final String value;
+
+    ProductEnum(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
 
 }

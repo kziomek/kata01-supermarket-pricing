@@ -32,6 +32,7 @@ public class PricingServiceTest {
         assertEquals(new BigDecimal("0.90"), result.getTotalSavings());
         assertEquals(new BigDecimal("2.40"), result.getTotalToPay());
         assertEquals(2, result.getSavings().size());
+        assertEquals(3, result.getBasket().getItems().size());
 
     }
 

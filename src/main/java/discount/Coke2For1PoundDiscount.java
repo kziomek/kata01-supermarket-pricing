@@ -2,6 +2,8 @@ package discount;
 
 import java.math.BigDecimal;
 
+import static product.ProductEnum.COKE;
+
 /**
  * @author Krzysztof Ziomek
  * @since 04/04/2017.
@@ -15,7 +17,7 @@ public class Coke2For1PoundDiscount extends BunchDiscount {
 
     @Override
     protected String getProductNameForDiscount() {
-        return "Coke";
+        return COKE.getValue();
     }
 
     @Override

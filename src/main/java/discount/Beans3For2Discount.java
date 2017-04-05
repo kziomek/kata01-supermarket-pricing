@@ -2,6 +2,8 @@ package discount;
 
 import java.math.BigDecimal;
 
+import static product.ProductEnum.BEANS;
+
 /**
  * @author Krzysztof Ziomek
  * @since 04/04/2017.
@@ -15,7 +17,7 @@ public class Beans3For2Discount extends BunchDiscount {
 
     @Override
     protected String getProductNameForDiscount() {
-        return "Beans";
+        return BEANS.getValue();
     }
 
     @Override

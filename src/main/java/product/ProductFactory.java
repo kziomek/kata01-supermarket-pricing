@@ -12,11 +12,11 @@ public class ProductFactory {
 
         switch (productEnum) {
             case BEANS:
-                return new Beans("Beans", new BigDecimal(0.50));
+                return new Beans(new BigDecimal(0.50));
             case COKE:
-                return new Coke("Coke", new BigDecimal(0.70));
+                return new Coke(new BigDecimal(0.70));
             case ORANGES:
-                return new Oranges("Oranges", new BigDecimal(1.99));
+                return new Oranges(new BigDecimal(1.99));
         }
         return null;
     }

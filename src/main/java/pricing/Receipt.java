@@ -11,15 +11,15 @@ import java.util.List;
  */
 public class Receipt {
 
-    private Basket basket;
+    private final Basket basket;
 
-    private BigDecimal subTotal;
+    private final BigDecimal subTotal;
 
-    private BigDecimal totalSavings;
+    private final BigDecimal totalSavings;
 
-    private BigDecimal totalToPay;
+    private final BigDecimal totalToPay;
 
-    private List<Saving> savings;
+    private final List<Saving> savings;
 
 
     public Receipt(Basket basket, BigDecimal subTotal, BigDecimal totalSavings, BigDecimal totalToPay, List<Saving> savings) {
@@ -34,10 +34,6 @@ public class Receipt {
         return subTotal;
     }
 
-    public Basket getBasket() {
-        return basket;
-    }
-
     public BigDecimal getTotalSavings() {
         return totalSavings;
     }
@@ -50,4 +46,7 @@ public class Receipt {
         return savings;
     }
 
+    public Basket getBasket() {
+        return basket;
+    }
 }
