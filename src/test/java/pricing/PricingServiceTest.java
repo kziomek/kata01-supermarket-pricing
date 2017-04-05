@@ -26,7 +26,7 @@ public class PricingServiceTest {
         Basket basket = BasketFactory.getFullBasket();
 
         // execute
-        Receipt result = pricingService.calculate(basket);
+        Pricing result = pricingService.calculate(basket);
 
         // assert
         assertEquals(new BigDecimal("3.30"), result.getSubTotal());

@@ -21,14 +21,14 @@ public class PricingService {
         this.discountService = discountService;
     }
 
-    public Receipt calculate(Basket basket) {
+    public Pricing calculate(Basket basket) {
 
         BigDecimal subTotal = calculateSubTotal(basket);
         List<Saving> savings = calculateAllSavings(basket);
         BigDecimal totalSavings = calculateTotalSavings(savings);
         BigDecimal totalToPay = calculateTotalToPay(subTotal, totalSavings);
 
-        return new Receipt(basket, subTotal, totalSavings, totalToPay, savings);
+        return new Pricing(basket, subTotal, totalSavings, totalToPay, savings);
 
     }
 

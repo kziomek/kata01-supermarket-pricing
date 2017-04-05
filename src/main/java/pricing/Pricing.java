@@ -10,7 +10,7 @@ import java.util.List;
  * @author Krzysztof Ziomek
  * @since 04/04/2017.
  */
-public class Receipt {
+public class Pricing {
 
     private final Basket basket;
 
@@ -23,7 +23,7 @@ public class Receipt {
     private final List<Saving> savings;
 
 
-    public Receipt(Basket basket, BigDecimal subTotal, BigDecimal totalSavings, BigDecimal totalToPay, List<Saving> savings) {
+    public Pricing(Basket basket, BigDecimal subTotal, BigDecimal totalSavings, BigDecimal totalToPay, List<Saving> savings) {
         this.basket = basket;
         this.subTotal = subTotal;
         this.totalSavings = totalSavings;
