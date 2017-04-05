@@ -1,4 +1,4 @@
-package pricing;
+package discount;
 
 import java.math.BigDecimal;
 

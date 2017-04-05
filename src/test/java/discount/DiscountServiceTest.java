@@ -3,7 +3,6 @@ package discount;
 import basket.Item;
 import org.junit.Assert;
 import org.junit.Test;
-import pricing.Saving;
 import product.ProductFactory;
 
 import java.math.BigDecimal;

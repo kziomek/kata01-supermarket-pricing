@@ -1,7 +1,6 @@
 package discount;
 
 import basket.Item;
-import pricing.Saving;
 
 import java.util.ArrayList;
 import java.util.List;
