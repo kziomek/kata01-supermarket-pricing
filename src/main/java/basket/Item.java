@@ -20,6 +20,10 @@ public class Item {
         this.quantity = quantity;
     }
 
+    public BigDecimal getItemPrice() {
+        return getQuantity().multiply(getProduct().getPrice());
+    }
+
     public Product getProduct() {
         return product;
     }

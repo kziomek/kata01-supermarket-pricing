@@ -34,8 +34,7 @@ public class PricingService {
     protected BigDecimal calculateSubTotal(Basket basket) {
         BigDecimal subTotal = BigDecimal.ZERO;
         for (Item item : basket.getItems()) {
-            // todo move calculation to Item
-            subTotal = subTotal.add(item.getQuantity().multiply(item.getProduct().getPrice()));
+            subTotal = subTotal.add(item.getItemPrice());
         }
         subTotal = subTotal.setScale(2, BigDecimal.ROUND_HALF_DOWN);
         return subTotal;
