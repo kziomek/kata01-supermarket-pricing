@@ -23,8 +23,11 @@ public class PricingService {
     public Receipt calculate(Basket basket) {
 
         BigDecimal subTotal = calculateSubTotal(basket);
+        List<Saving> savings = calculateAllSavings(basket);
+        BigDecimal totalSavings = calculateTotalSavings(savings);
+        BigDecimal totalToPay = calculateTotalToPay(subTotal, totalSavings);
 
-        return new Receipt(basket, subTotal, null, null, null);
+        return new Receipt(basket, subTotal, totalSavings, totalToPay, savings);
 
     }
 
@@ -53,4 +56,9 @@ public class PricingService {
         }
         return totalSavings;
     }
+
+    protected BigDecimal calculateTotalToPay(BigDecimal subTotal, BigDecimal totalSavings) {
+        return subTotal.subtract(totalSavings);
+    }
+
 }
