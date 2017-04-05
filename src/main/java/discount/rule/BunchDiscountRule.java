@@ -1,6 +1,7 @@
-package discount;
+package discount.rule;
 
 import basket.Item;
+import discount.Saving;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -9,12 +10,12 @@ import java.math.RoundingMode;
  * @author Krzysztof Ziomek
  * @since 04/04/2017.
  */
-public abstract class BunchDiscount implements Discount {
+public abstract class BunchDiscountRule implements DiscountRule {
 
     @Override
     public Saving calculateDiscount(Item item) {
 
-        if (!getProductNameForDiscount().equals(item.getProduct().getName())) {
+        if (!isApplicable(item)) {
             return null;
         }
 
@@ -23,6 +24,10 @@ public abstract class BunchDiscount implements Discount {
 
         return new Saving(getDiscountDescription(), discountValue);
 
+    }
+
+    private boolean isApplicable(Item item){
+        return getProductNameForDiscount().equals(item.getProduct().getName());
     }
 
     protected abstract String getDiscountDescription();

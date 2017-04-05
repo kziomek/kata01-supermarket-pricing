@@ -1,5 +1,7 @@
 package discount;
 
+import discount.rule.DiscountRule;
+
 import java.util.List;
 
 /**
@@ -8,6 +10,6 @@ import java.util.List;
  */
 public interface DiscountRepository {
 
-    List<Discount> findAllDiscounts();
+    List<DiscountRule> findAllDiscounts();
 
 }

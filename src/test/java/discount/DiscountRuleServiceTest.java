@@ -15,7 +15,7 @@ import static product.ProductEnum.COKE;
  * @author Krzysztof Ziomek
  * @since 04/04/2017.
  */
-public class DiscountServiceTest {
+public class DiscountRuleServiceTest {
 
     @Test
     public void calculateDiscountShouldReturn50pOn3BeansItem() throws Exception {

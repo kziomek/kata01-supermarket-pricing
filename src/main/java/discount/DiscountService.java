@@ -1,6 +1,7 @@
 package discount;
 
 import basket.Item;
+import discount.rule.DiscountRule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +20,10 @@ public class DiscountService {
 
     public List<Saving> calculateDiscount(Item item) {
         List<Saving> savings = new ArrayList<>();
-        List<Discount> allDiscounts = discountRepository.findAllDiscounts();
+        List<DiscountRule> allDiscountStrategies = discountRepository.findAllDiscounts();
 
-        for (Discount discount : allDiscounts) {
-            Saving saving = discount.calculateDiscount(item);
+        for (DiscountRule discountRule : allDiscountStrategies) {
+            Saving saving = discountRule.calculateDiscount(item);
             if (saving != null) {
                 savings.add(saving);
             }

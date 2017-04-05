@@ -1,33 +1,33 @@
-package discount;
+package discount.rule;
 
 import java.math.BigDecimal;
 
-import static product.ProductEnum.COKE;
+import static product.ProductEnum.BEANS;
 
 /**
  * @author Krzysztof Ziomek
  * @since 04/04/2017.
  */
-public class Coke2For1PoundDiscount extends BunchDiscount {
+public class Beans3For2DiscountRule extends BunchDiscountRule {
 
     @Override
     protected String getDiscountDescription() {
-        return "Coke 2 for £1";
+        return "Beans 3 for 2";
     }
 
     @Override
     protected String getProductNameForDiscount() {
-        return COKE.getValue();
+        return BEANS.getValue();
     }
 
     @Override
     protected BigDecimal getSingleDiscountValue() {
-        return new BigDecimal("0.40");
+        return new BigDecimal("0.50");
     }
 
     @Override
     protected BigDecimal getNumberOfItemsRequiredForSingleDiscount() {
-        return new BigDecimal("2");
+        return new BigDecimal("3");
     }
 
 }

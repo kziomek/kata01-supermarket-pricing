@@ -1,5 +1,9 @@
 package discount;
 
+import discount.rule.Beans3For2DiscountRule;
+import discount.rule.Coke2For1PoundDiscountRule;
+import discount.rule.DiscountRule;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +14,11 @@ import java.util.List;
 public class InMemoryDiscountRepository implements DiscountRepository {
 
     @Override
-    public List<Discount> findAllDiscounts() {
-        List<Discount> discounts = new ArrayList<>();
-        discounts.add(new Beans3For2Discount());
-        discounts.add(new Coke2For1PoundDiscount());
-        return discounts;
+    public List<DiscountRule> findAllDiscounts() {
+        List<DiscountRule> discountStrategies = new ArrayList<>();
+        discountStrategies.add(new Beans3For2DiscountRule());
+        discountStrategies.add(new Coke2For1PoundDiscountRule());
+        return discountStrategies;
     }
 
 }
