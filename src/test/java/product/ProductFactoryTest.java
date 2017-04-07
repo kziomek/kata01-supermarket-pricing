@@ -3,9 +3,7 @@ package product;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static product.ProductEnum.BEANS;
-import static product.ProductEnum.COKE;
-import static product.ProductEnum.ORANGES;
+import static product.ProductEnum.*;
 
 /**
  * @author Krzysztof Ziomek
@@ -44,6 +42,16 @@ public class ProductFactoryTest {
         // assert
         Assert.assertNotNull(product);
         Assert.assertEquals(Oranges.class, product.getClass());
+    }
+
+    @Test
+    public void getProductShouldReturnNullWhenUnregisteredProductRequested(){
+
+        // execute
+        Product product = ProductFactory.getProduct(UNREGISTERED);
+
+        // assert
+        Assert.assertNull(null);
     }
 
 }
