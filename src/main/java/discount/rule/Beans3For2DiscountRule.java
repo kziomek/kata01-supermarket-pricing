@@ -1,5 +1,8 @@
 package discount.rule;
 
+import product.Product;
+import product.ProductFactory;
+
 import java.math.BigDecimal;
 
 import static product.ProductEnum.BEANS;
@@ -10,6 +13,12 @@ import static product.ProductEnum.BEANS;
  */
 public class Beans3For2DiscountRule extends BunchDiscountRule {
 
+    private final Product beans;
+
+    public Beans3For2DiscountRule() {
+        this.beans = ProductFactory.getProduct(BEANS);
+    }
+
     @Override
     protected String getDiscountDescription() {
         return "Beans 3 for 2";
@@ -17,12 +26,12 @@ public class Beans3For2DiscountRule extends BunchDiscountRule {
 
     @Override
     protected String getProductNameForDiscount() {
-        return BEANS.getValue();
+        return beans.getName();
     }
 
     @Override
     protected BigDecimal getSingleDiscountValue() {
-        return new BigDecimal("0.50");
+        return beans.getPrice();
     }
 
     @Override

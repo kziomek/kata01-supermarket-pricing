@@ -3,7 +3,7 @@ package pricing;
 import basket.Basket;
 import basket.BasketFactory;
 import discount.Discount;
-import discount.DiscountService;
+import discount.DiscountServiceImpl;
 import discount.InMemoryDiscountRepository;
 import org.junit.Test;
 
@@ -17,31 +17,12 @@ import static org.junit.Assert.assertEquals;
  * @author Krzysztof Ziomek
  * @since 04/04/2017.
  */
-public class PricingServiceTest {
-
-    @Test
-    public void calculateShouldReturnPricingWithValidValuesForGivenBasket() throws Exception {
-        // prepare
-        PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
-        Basket basket = BasketFactory.getFullBasket();
-
-        // execute
-        Pricing result = pricingService.calculate(basket);
-
-        // assert
-        assertEquals(new BigDecimal("3.30"), result.getSubTotal());
-        assertEquals(new BigDecimal("0.90"), result.getTotalSavings());
-        assertEquals(new BigDecimal("2.40"), result.getTotalToPay());
-        assertEquals(2, result.getSavings().size());
-        assertEquals(3, result.getBasket().getItems().size());
-
-    }
-
+public class PricingServiceImplTest {
 
     @Test
     public void calculateSubTotalShouldReturnValidSubTotalForGivenBasket() {
         // prepare
-        PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
+        PricingServiceImpl pricingService = new PricingServiceImpl(new DiscountServiceImpl(new InMemoryDiscountRepository()));
         Basket basket = BasketFactory.getFullBasket();
 
         // execute
@@ -54,7 +35,7 @@ public class PricingServiceTest {
     @Test
     public void calculateTotalSavingsShouldReturnValidTotalSavingsForGivenListOfSavings() {
         // prepare
-        PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
+        PricingServiceImpl pricingService = new PricingServiceImpl(new DiscountServiceImpl(new InMemoryDiscountRepository()));
 
         List<Discount> discounts = new ArrayList<>();
         discounts.add(new Discount("Beans 3 for 2", new BigDecimal("0.50")));
@@ -70,7 +51,7 @@ public class PricingServiceTest {
     @Test
     public void calculateAllSavingsShouldReturnListOfTwoSavingsForGivenBasket() {
         // prepare
-        PricingService pricingService = new PricingService(new DiscountService(new InMemoryDiscountRepository()));
+        PricingServiceImpl pricingService = new PricingServiceImpl(new DiscountServiceImpl(new InMemoryDiscountRepository()));
         Basket basket = BasketFactory.getFullBasket();
 
         // execute
@@ -84,6 +65,5 @@ public class PricingServiceTest {
         assertEquals(new BigDecimal("0.40"), discounts.get(1).getValue());
 
     }
-
 
 }

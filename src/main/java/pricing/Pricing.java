@@ -23,7 +23,7 @@ public class Pricing {
     private final List<Discount> discounts;
 
 
-    public Pricing(Basket basket, BigDecimal subTotal, BigDecimal totalSavings, BigDecimal totalToPay, List<Discount> discounts) {
+    Pricing(Basket basket, BigDecimal subTotal, BigDecimal totalSavings, BigDecimal totalToPay, List<Discount> discounts) {
         this.basket = basket;
         this.subTotal = subTotal;
         this.totalSavings = totalSavings;

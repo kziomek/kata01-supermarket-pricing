@@ -20,7 +20,7 @@ public class DiscountRuleServiceTest {
     @Test
     public void collectDiscountsShouldReturn50pOn3BeansItem() throws Exception {
         // prepare
-        DiscountService discountService = new DiscountService(new InMemoryDiscountRepository());
+        DiscountService discountService = new DiscountServiceImpl(new InMemoryDiscountRepository());
         Item beansItem = new Item(ProductFactory.getProduct(BEANS), new BigDecimal(3));
 
         // execute
@@ -34,7 +34,7 @@ public class DiscountRuleServiceTest {
     @Test
     public void collectDiscountsShouldReturn40pOn2CokesItem() throws Exception {
         // prepare
-        DiscountService discountService = new DiscountService(new InMemoryDiscountRepository());
+        DiscountService discountService = new DiscountServiceImpl(new InMemoryDiscountRepository());
         Item beansItem = new Item(ProductFactory.getProduct(COKE), new BigDecimal(2));
 
         // execute

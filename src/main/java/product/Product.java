@@ -8,12 +8,13 @@ import java.math.BigDecimal;
  */
 public abstract class Product {
 
-    protected String name;
+    private final String name;
 
-    protected BigDecimal price;
+    private final BigDecimal price;
 
-
-    public Product() {
+    Product(String name, BigDecimal price) {
+        this.name = name;
+        this.price = price;
     }
 
     public String getName() {

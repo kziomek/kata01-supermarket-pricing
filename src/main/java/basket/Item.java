@@ -21,11 +21,11 @@ public class Item {
     }
 
     public BigDecimal getItemPrice() {
-        return getQuantity().multiply(getProduct().getPrice());
+        return getQuantity().multiply(product.getPrice());
     }
 
-    public Product getProduct() {
-        return product;
+    public String getProductName() {
+        return product.getName();
     }
 
     public BigDecimal getQuantity() {

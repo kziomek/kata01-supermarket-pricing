@@ -1,5 +1,8 @@
 package discount.rule;
 
+import product.Product;
+import product.ProductFactory;
+
 import java.math.BigDecimal;
 
 import static product.ProductEnum.COKE;
@@ -9,6 +12,14 @@ import static product.ProductEnum.COKE;
  * @since 04/04/2017.
  */
 public class Coke2For1PoundDiscountRule extends BunchDiscountRule {
+
+    private final static BigDecimal ONE_POUND = BigDecimal.ONE;
+
+    private final Product coke;
+
+    public Coke2For1PoundDiscountRule() {
+        this.coke = ProductFactory.getProduct(COKE);
+    }
 
     @Override
     protected String getDiscountDescription() {
@@ -22,7 +33,7 @@ public class Coke2For1PoundDiscountRule extends BunchDiscountRule {
 
     @Override
     protected BigDecimal getSingleDiscountValue() {
-        return new BigDecimal("0.40");
+        return coke.getPrice().multiply(new BigDecimal(2)).subtract(ONE_POUND);
     }
 
     @Override

@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static java.math.BigDecimal.ONE;
 import static product.ProductEnum.COKE;
@@ -25,10 +26,10 @@ public class Coke2For1PoundDiscountRuleTest {
         Item item = new Item(getProduct(ORANGES), ONE);
 
         // execute
-        Discount discount = rule.calculateDiscount(item);
+        Optional<Discount> discount = rule.calculateDiscount(item);
 
         // assert
-        Assert.assertNull(discount);
+        Assert.assertFalse(discount.isPresent());
     }
 
     @Test
@@ -38,10 +39,11 @@ public class Coke2For1PoundDiscountRuleTest {
         Item item = new Item(getProduct(COKE), ONE);
 
         // execute
-        Discount discount = rule.calculateDiscount(item);
+        Optional<Discount> discount = rule.calculateDiscount(item);
 
         // assert
-        Assert.assertEquals(new BigDecimal("0.00"), discount.getValue());
+        Assert.assertTrue(discount.isPresent());
+        Assert.assertEquals(new BigDecimal("0.00"), discount.get().getValue());
     }
 
     @Test
@@ -51,10 +53,11 @@ public class Coke2For1PoundDiscountRuleTest {
         Item item = new Item(getProduct(COKE), new BigDecimal(2));
 
         // execute
-        Discount discount = rule.calculateDiscount(item);
+        Optional<Discount> discount = rule.calculateDiscount(item);
 
         // assert
-        Assert.assertEquals(new BigDecimal("0.40"), discount.getValue());
+        Assert.assertTrue(discount.isPresent());
+        Assert.assertEquals(new BigDecimal("0.40"), discount.get().getValue());
     }
 
     @Test
@@ -64,10 +67,11 @@ public class Coke2For1PoundDiscountRuleTest {
         Item item = new Item(getProduct(COKE), new BigDecimal(7));
 
         // execute
-        Discount discount = rule.calculateDiscount(item);
+        Optional<Discount> discount = rule.calculateDiscount(item);
 
         // assert
-        Assert.assertEquals(new BigDecimal("1.20"), discount.getValue());
+        Assert.assertTrue(discount.isPresent());
+        Assert.assertEquals(new BigDecimal("1.20"), discount.get().getValue());
     }
 
 }
