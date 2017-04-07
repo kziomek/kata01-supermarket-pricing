@@ -8,8 +8,7 @@ import java.math.BigDecimal;
  */
 public class ProductFactory {
 
-    private ProductFactory() {
-    }
+    private ProductFactory() {}
 
     public static Product getProduct(ProductEnum productEnum) {
 
@@ -22,6 +21,7 @@ public class ProductFactory {
                 return new Oranges(new BigDecimal("1.99"));
         }
         return null;
+
     }
 
 }

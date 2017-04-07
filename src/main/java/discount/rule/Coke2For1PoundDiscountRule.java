@@ -1,11 +1,11 @@
 package discount.rule;
 
 import product.Product;
-import product.ProductFactory;
 
 import java.math.BigDecimal;
 
 import static product.ProductEnum.COKE;
+import static product.ProductFactory.getProduct;
 
 /**
  * @author Krzysztof Ziomek
@@ -18,7 +18,7 @@ public class Coke2For1PoundDiscountRule extends BunchDiscountRule {
     private final Product coke;
 
     public Coke2For1PoundDiscountRule() {
-        this.coke = ProductFactory.getProduct(COKE);
+        this.coke = getProduct(COKE);
     }
 
     @Override

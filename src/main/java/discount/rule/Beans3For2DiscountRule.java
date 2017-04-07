@@ -1,11 +1,11 @@
 package discount.rule;
 
 import product.Product;
-import product.ProductFactory;
 
 import java.math.BigDecimal;
 
 import static product.ProductEnum.BEANS;
+import static product.ProductFactory.getProduct;
 
 /**
  * @author Krzysztof Ziomek
@@ -16,7 +16,7 @@ public class Beans3For2DiscountRule extends BunchDiscountRule {
     private final Product beans;
 
     public Beans3For2DiscountRule() {
-        this.beans = ProductFactory.getProduct(BEANS);
+        this.beans = getProduct(BEANS);
     }
 
     @Override
