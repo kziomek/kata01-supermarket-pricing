@@ -6,6 +6,12 @@ group 'com.krzysztofziomek'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: "jacoco"
+
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+}
+
 
 sourceCompatibility = 1.8
 
