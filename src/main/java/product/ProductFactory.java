@@ -8,20 +8,25 @@ import java.math.BigDecimal;
  */
 public class ProductFactory {
 
-    private ProductFactory() {}
+    private ProductFactory() {
+    }
 
     public static Product getProduct(ProductEnum productEnum) {
 
+        Product product = null;
         switch (productEnum) {
             case BEANS:
-                return new Beans(new BigDecimal("0.50"));
+                product = new Beans(new BigDecimal("0.50"));
+                break;
             case COKE:
-                return new Coke(new BigDecimal("0.70"));
+                product = new Coke(new BigDecimal("0.70"));
+                break;
             case ORANGES:
-                return new Oranges(new BigDecimal("1.99"));
+                product = new Oranges(new BigDecimal("1.99"));
+                break;
         }
 
-        return null;
+        return product;
 
     }
 

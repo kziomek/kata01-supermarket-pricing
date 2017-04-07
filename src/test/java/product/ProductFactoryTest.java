@@ -12,7 +12,7 @@ import static product.ProductEnum.*;
 public class ProductFactoryTest {
 
     @Test
-    public void getProductShouldReturnBeansWhenBeansRequested(){
+    public void getProductShouldReturnBeansWhenBeansRequested() {
 
         // execute
         Product product = ProductFactory.getProduct(BEANS);
@@ -23,7 +23,7 @@ public class ProductFactoryTest {
     }
 
     @Test
-    public void getProductShouldReturnCokeWhenCokeRequested(){
+    public void getProductShouldReturnCokeWhenCokeRequested() {
 
         // execute
         Product product = ProductFactory.getProduct(COKE);
@@ -34,7 +34,7 @@ public class ProductFactoryTest {
     }
 
     @Test
-    public void getProductShouldReturnOrangesWhenOrangesRequested(){
+    public void getProductShouldReturnOrangesWhenOrangesRequested() {
 
         // execute
         Product product = ProductFactory.getProduct(ORANGES);
@@ -42,16 +42,6 @@ public class ProductFactoryTest {
         // assert
         Assert.assertNotNull(product);
         Assert.assertEquals(Oranges.class, product.getClass());
-    }
-
-    @Test
-    public void getProductShouldReturnNullWhenUnregisteredProductRequested(){
-
-        // execute
-        Product product = ProductFactory.getProduct(UNREGISTERED);
-
-        // assert
-        Assert.assertNull(null);
     }
 
 }
