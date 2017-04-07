@@ -13,7 +13,7 @@ import static product.ProductEnum.COKE;
  */
 public class Coke2For1PoundDiscountRule extends BunchDiscountRule {
 
-    private final static BigDecimal ONE_POUND = BigDecimal.ONE;
+    private static final BigDecimal ONE_POUND = BigDecimal.ONE;
 
     private final Product coke;
 

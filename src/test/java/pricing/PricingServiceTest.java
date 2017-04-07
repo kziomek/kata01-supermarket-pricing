@@ -1,11 +1,10 @@
+package pricing;
+
 import basket.Basket;
 import basket.BasketFactory;
 import discount.DiscountServiceImpl;
 import discount.InMemoryDiscountRepository;
 import org.junit.Test;
-import pricing.Pricing;
-import pricing.PricingService;
-import pricing.PricingServiceImpl;
 
 import java.math.BigDecimal;
 

@@ -8,6 +8,9 @@ import java.math.BigDecimal;
  */
 public class ProductFactory {
 
+    private ProductFactory() {
+    }
+
     public static Product getProduct(ProductEnum productEnum) {
 
         switch (productEnum) {
