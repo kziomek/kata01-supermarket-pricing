@@ -20,6 +20,7 @@ public class ProductFactory {
             case ORANGES:
                 return new Oranges(new BigDecimal("1.99"));
         }
+
         return null;
 
     }
