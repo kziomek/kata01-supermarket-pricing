@@ -26,7 +26,6 @@ public class Any2ProductFor2PoundsDiscountRule {
         this.discountableProducts = productGroup;
     }
 
-
     public final Optional<Discount> calculateDiscount(Basket basket) {
         List<Item> items = extractDiscountableDescSortedItems(basket, discountableProducts);
         BigDecimal totalDiscount = ZERO;
@@ -52,7 +51,6 @@ public class Any2ProductFor2PoundsDiscountRule {
                 remainderValue = item.getProductPrice();
             }
         }
-
 
         return Optional.of(new Discount("Any2ProductFor2PoundsDiscountRule", totalDiscount));
 
