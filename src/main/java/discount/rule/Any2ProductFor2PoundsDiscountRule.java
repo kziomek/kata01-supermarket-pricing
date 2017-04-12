@@ -20,7 +20,7 @@ public class Any2ProductFor2PoundsDiscountRule {
 
     private static final BigDecimal TWO = new BigDecimal("2");
     private static final BigDecimal PRICE_FOR_2_PRODUCTS = TWO;
-    List<String> discountableProducts;
+    private final List<String> discountableProducts;
 
     public Any2ProductFor2PoundsDiscountRule(List<String> productGroup) {
         this.discountableProducts = productGroup;
@@ -31,14 +31,14 @@ public class Any2ProductFor2PoundsDiscountRule {
         List<Item> items = extractDiscountableDescSortedItems(basket, discountableProducts);
         BigDecimal totalDiscount = ZERO;
 
-        BigDecimal leftValue = ZERO;
+        BigDecimal remainderValue = ZERO;
         for (Item item : items) {
             BigDecimal currQuantity = item.getQuantity();
 
-            if (ZERO.compareTo(leftValue) < 0) {
-                BigDecimal discountValue = item.getProductPrice().add(leftValue).subtract(PRICE_FOR_2_PRODUCTS);
+            if (ZERO.compareTo(remainderValue) < 0) {
+                BigDecimal discountValue = item.getProductPrice().add(remainderValue).subtract(PRICE_FOR_2_PRODUCTS);
                 totalDiscount = totalDiscount.add(discountValue);
-                leftValue = ZERO;
+                remainderValue = ZERO;
                 currQuantity = currQuantity.subtract(ONE);
             }
 
@@ -49,7 +49,7 @@ public class Any2ProductFor2PoundsDiscountRule {
             }
 
             if (currQuantity.compareTo(ONE) == 0) {
-                leftValue = item.getProductPrice();
+                remainderValue = item.getProductPrice();
             }
         }
 
