@@ -9,54 +9,60 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static java.math.BigDecimal.ONE;
+import static java.math.BigDecimal.ZERO;
+
 /**
  * @author Krzysztof Ziomek
  * @since 12/04/2017.
  */
 public class Any2ProductFor2PoundsDiscountRule {
 
-    BigDecimal PRICE_FOR_2_PRODUCTS = new BigDecimal("2");
-    List<String> productNames;
+    BigDecimal TWO = new BigDecimal("2");
+    BigDecimal PRICE_FOR_2_PRODUCTS = TWO;
+    List<String> discountableProducts;
 
     public Any2ProductFor2PoundsDiscountRule(List<String> productGroup) {
-        this.productNames = productGroup;
+        this.discountableProducts = productGroup;
     }
 
 
     public final Optional<Discount> calculateDiscount(Basket basket) {
-        BigDecimal discountValue = BigDecimal.ZERO;
+        List<Item> items = extractDiscountableDescSortedItems(basket, discountableProducts);
+        BigDecimal totalDiscount = ZERO;
 
-        List<Item> itemList = basket.getItems().stream()
-                .filter(item -> productNames.contains(item.getProductName()))
-                .sorted((itemA, itemB) -> itemB.getProductPrice().compareTo(itemA.getProductPrice()))
-                .collect(Collectors.toList());
+        BigDecimal leftValue = ZERO;
+        for (Item item : items) {
+            BigDecimal currQuantity = item.getQuantity();
 
-        BigDecimal leftValue = BigDecimal.ZERO;
-        for (int i = 0; i < itemList.size(); i++) {
-            Item itemI = itemList.get(i);
-            BigDecimal tmpQuantity = itemI.getQuantity();
-
-            if (BigDecimal.ZERO.compareTo(leftValue) < 0) {
-                tmpQuantity = tmpQuantity.subtract(BigDecimal.ONE);
-                BigDecimal sum = itemI.getProductPrice().add(leftValue);
-                discountValue = discountValue.add(sum.subtract(PRICE_FOR_2_PRODUCTS));
-                leftValue = BigDecimal.ZERO;
+            if (ZERO.compareTo(leftValue) < 0) {
+                BigDecimal discountValue = item.getProductPrice().add(leftValue).subtract(PRICE_FOR_2_PRODUCTS);
+                totalDiscount = totalDiscount.add(discountValue);
+                leftValue = ZERO;
+                currQuantity = currQuantity.subtract(ONE);
             }
 
-            while (tmpQuantity.compareTo(new BigDecimal("2")) >= 0) {
-                BigDecimal sum = new BigDecimal("2").multiply(itemI.getProductPrice());
-                discountValue = discountValue.add(sum.subtract(PRICE_FOR_2_PRODUCTS));
-                tmpQuantity = tmpQuantity.subtract(new BigDecimal("2"));
+            while (currQuantity.compareTo(TWO) >= 0) {
+                BigDecimal discountValue = TWO.multiply(item.getProductPrice()).subtract(PRICE_FOR_2_PRODUCTS);
+                totalDiscount = totalDiscount.add(discountValue);
+                currQuantity = currQuantity.subtract(TWO);
             }
 
-            if (tmpQuantity.compareTo(BigDecimal.ONE) == 0) {
-                leftValue = itemI.getProductPrice();
+            if (currQuantity.compareTo(ONE) == 0) {
+                leftValue = item.getProductPrice();
             }
-
         }
 
-        return Optional.of(new Discount("Any2ProductFor2PoundsDiscountRule", discountValue));
 
+        return Optional.of(new Discount("Any2ProductFor2PoundsDiscountRule", totalDiscount));
+
+    }
+
+    private List<Item> extractDiscountableDescSortedItems(Basket basket, List<String> discountableProducts) {
+        return basket.getItems().stream()
+                .filter(item -> discountableProducts.contains(item.getProductName()))
+                .sorted((itemA, itemB) -> itemB.getProductPrice().compareTo(itemA.getProductPrice()))
+                .collect(Collectors.toList());
     }
 
 }
