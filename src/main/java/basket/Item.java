@@ -24,6 +24,10 @@ public class Item {
         return getQuantity().multiply(product.getPrice());
     }
 
+    public BigDecimal getProductPrice() {
+        return product.getPrice();
+    }
+
     public String getProductName() {
         return product.getName();
     }

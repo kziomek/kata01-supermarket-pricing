@@ -12,7 +12,7 @@ public abstract class Product {
 
     private final BigDecimal price;
 
-    Product(String name, BigDecimal price) {
+    protected Product(String name, BigDecimal price) {
         this.name = name;
         this.price = price;
     }

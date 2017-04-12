@@ -8,7 +8,10 @@ public enum ProductEnum {
 
     BEANS("Beans"),
     COKE("Coke"),
-    ORANGES("Oranges");
+    ORANGES("Oranges"),
+    TORTELINNI("Tortellini"),
+    GNOCHI("Gnochi"),
+    SPAGHETTI("Spaghetti");
 
     private final String value;
 
