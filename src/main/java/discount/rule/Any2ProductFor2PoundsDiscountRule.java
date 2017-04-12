@@ -18,8 +18,8 @@ import static java.math.BigDecimal.ZERO;
  */
 public class Any2ProductFor2PoundsDiscountRule {
 
-    BigDecimal TWO = new BigDecimal("2");
-    BigDecimal PRICE_FOR_2_PRODUCTS = TWO;
+    private static final BigDecimal TWO = new BigDecimal("2");
+    private static final BigDecimal PRICE_FOR_2_PRODUCTS = TWO;
     List<String> discountableProducts;
 
     public Any2ProductFor2PoundsDiscountRule(List<String> productGroup) {
