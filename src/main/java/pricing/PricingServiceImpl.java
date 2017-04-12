@@ -34,7 +34,7 @@ public class PricingServiceImpl implements PricingService {
 
     BigDecimal calculateSubTotal(Basket basket) {
         return basket.getItems().stream()
-                .map(Item::getProductPrice)
+                .map(Item::getItemPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
                 .setScale(2, BigDecimal.ROUND_HALF_DOWN);
     }

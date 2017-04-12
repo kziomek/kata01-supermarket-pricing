@@ -25,19 +25,22 @@ public class Any2ProductFor2PoundsDiscountRule {
 
     public final Optional<Discount> calculateDiscount(Basket basket) {
         BigDecimal discountValue = BigDecimal.ZERO;
-        boolean borrowed = false;
 
         List<Item> itemList = basket.getItems().stream()
                 .filter(item -> productNames.contains(item.getProductName()))
                 .sorted((itemA, itemB) -> itemB.getProductPrice().compareTo(itemA.getProductPrice()))
                 .collect(Collectors.toList());
 
+        BigDecimal leftValue = BigDecimal.ZERO;
         for (int i = 0; i < itemList.size(); i++) {
             Item itemI = itemList.get(i);
             BigDecimal tmpQuantity = itemI.getQuantity();
-            if (borrowed) {
-                borrowed = false;
+
+            if (BigDecimal.ZERO.compareTo(leftValue) < 0) {
                 tmpQuantity = tmpQuantity.subtract(BigDecimal.ONE);
+                BigDecimal sum = itemI.getProductPrice().add(leftValue);
+                discountValue = discountValue.add(sum.subtract(PRICE_FOR_2_PRODUCTS));
+                leftValue = BigDecimal.ZERO;
             }
 
             while (tmpQuantity.compareTo(new BigDecimal("2")) >= 0) {
@@ -46,11 +49,8 @@ public class Any2ProductFor2PoundsDiscountRule {
                 tmpQuantity = tmpQuantity.subtract(new BigDecimal("2"));
             }
 
-            if (tmpQuantity.compareTo(BigDecimal.ONE) == 0 && i < itemList.size() - 1) {
-                BigDecimal sum = itemI.getProductPrice().add(itemList.get(i + 1).getProductPrice());
-                discountValue = discountValue.add(sum.subtract(PRICE_FOR_2_PRODUCTS));
-                borrowed = true;
-
+            if (tmpQuantity.compareTo(BigDecimal.ONE) == 0) {
+                leftValue = itemI.getProductPrice();
             }
 
         }
